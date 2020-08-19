@@ -7,16 +7,40 @@
     <script src="/vendor/fetch.js"></script>
     <script src="/vendor/fastclick.js"></script>
     <script src="/vendor/jquery.js"></script>
+    <script src="/vendor/jquery-ui.js"></script>
+    <script src="/vendor/jquery.ui.touch-punch.js"></script>
     <script src="/www/util.js"></script>
     <script src="/www/control.js"></script>
     <link rel="stylesheet" href="/www/control.css">
+    <link rel="stylesheet" href="/vendor/jquery-ui.css">
   </head>
   <body>
     <div class="speed needsclick paused">
-      <div class="speed__indicator"></div>
+        <div class="speed__indicator">
+            <span class="scroll_speed">0</span>
+        </div>
     </div>
     <div class="status-bar">
-      <span class="status-bar__connectivity"></span> <span class="status-bar__speed">0</span>
+        <span class="status-bar__connectivity"></span> 
+        <div class="margin_adjust_div">
+            <div class="left_margin_adjust">
+                <span>Left Margin</span>
+                <div class="left_margin_slider"></div>
+            </div>
+            <div class="right_margin_adjust">
+                <span>Right Margin</span>
+                <div class="right_margin_slider"></div>
+            </div>
+        </div>
+        <div class="status-bar__font_size"> 
+            <span>Font-Size: </span>
+            <div class="font_controls">
+                <button class="font_smaller_button">-</button>
+                <span class="font_size">64</span>
+                <button class="font_larger_button">+</button>
+            </div>
+        </div>
+        
     </div>
     <div class="buttons">
       <button class="reset"></button>

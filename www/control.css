@@ -1,7 +1,7 @@
 html {
   font: 32px sans-serif;
   height: 100%;
-  line-height: 1.5em;
+  /* line-height: 1.5em; */
   overflow: hidden;
   width: 100%;
 }
@@ -86,18 +86,31 @@ button:active {
   width: 20px;
 }
 
+.scroll_speed {
+    flex: auto;
+    align-items: center;
+    vertical-align: middle;
+    font-size: .5em;
+}
+
 .status-bar {
+  display: flex;
+    flex: 1;
   color: white;
-  flex: 0 1.5em;
+  /*flex: 0 2em;*/
+    
+  padding: 0.2em;
 }
 
 .status-bar__connectivity {
+    order: 0;
   background: #888;
   border: 0.05rem solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5em;
   display: inline-block;
   height: 0.6em;
   width: 0.6em;
+  margin:10px;
 }
 
 .status-bar__connectivity.error {
@@ -106,6 +119,53 @@ button:active {
 
 .status-bar__connectivity.open {
   background: #72cc04;
+}
+
+.margin_adjust_div{
+    display: flex;
+    flex: 2;
+    order: 0;
+    flex-direction: column;
+    padding: 0.2em;
+}
+.left_margin_adjust {
+    padding: inherit;
+    font-size: 0.8em;
+}
+.left_margin_slider {
+    margin: 0.2em;
+}
+.right_margin_adjust {
+    padding: inherit;
+    font-size: 0.8em;
+}
+.right_margin_slider {
+    margin: 0.2em;
+}
+
+.status-bar__font_size {
+    position: relative;
+    order 2;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    vertical-align: middle;
+    padding: inherit;
+}
+.font_controls {
+    display: flex;
+    flex-direction: row;
+}
+.font_size {
+    padding: 0.5em;
+}
+.font_smaller_button {
+    height: 2.5em;
+    width: 1.5em;
+}
+.font_larger_button {
+    height: 2.5em;
+    width: 1.5em;
 }
 
 .buttons {

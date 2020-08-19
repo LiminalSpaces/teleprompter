@@ -9,6 +9,9 @@ $(function () {
   var MAX_SPEED = 300;
 
   var flipped = 0;
+    
+  //var contentStyle = window.getComputedStyle($contentContainer);
+  //var currentFontSize = $contentContainer.css('font-size');
 
   FastClick.attach(document.body);
 
@@ -69,6 +72,20 @@ $(function () {
         setPosition(getPosition() + deltaTop * data.direction);
         recalculateAnimation();
       }
+    })
+    
+    .on('fontSize', function(event) {
+        var data = JSON.parse(event.originalEvent.data);
+        $content.css('font-size', '+=' + data.amount);
+        //contentStyle.fontSize += data.amount;
+    })
+    .on('leftMarginChange', function(event) {
+       var data = JSON.parse(event.originalEvent.data);
+        $content.css('margin-left', data.value + '%');
+    })
+    .on('rightMarginChange', function(event) {
+        var data = JSON.parse(event.originalEvent.data);
+        $content.css('margin-right', data.value + '%');
     });
 
   $contentContainer.toggleClass('flip-y', flipped = Boolean(Number(localStorage.getItem('flip'))));

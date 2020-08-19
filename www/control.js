@@ -2,18 +2,46 @@ $(function () {
   var $source = $(new EventSource(String(window.location) + '/../events'));
   var $speed = $('.speed');
   var $speedIndicator = $('.speed__indicator');
-  var $speedDisplay = $('.status-bar__speed');
+  var $speedDisplay = $('.scroll_speed');
   var $statusIndicator = $('.status-bar__connectivity');
   var $play = $('.play');
   var $reset = $('.reset');
   var $back = $('.back');
   var $forward = $('.forward');
+  var $smallerFont = $('.font_smaller_button');
+  var $largerFont = $('.font_larger_button');
+  var $fontSize = $('.font_size');
+  var $leftMarginSlider = $('.left_margin_slider');
+  var $rightMarginSlider = $('.right_margin_slider');
   var down = false;
   var speed = 0;
   var $contentContainer = $('.content-container');
   var flipped = flipped = Number($contentContainer.hasClass('flip-y'));
 
+  /* Inital Prompter Fontsize */
+  var fontSize = 64;
+  var fontSizeDelta = 5;
+    
   FastClick.attach(document.body);
+    
+    $(function() {
+        $leftMarginSlider.slider({
+            min: 0, 
+            max: 50,
+            value: 10,
+            slide: function (event, ui) {
+                postEvent({ type: 'leftMarginChange', value: ui.value})
+            }
+        });
+        $rightMarginSlider.slider({
+            min: 0,
+            max: 50,
+            value: 10,
+            slide: function (event, ui) {
+                postEvent({ type: 'rightMarginChange', value: ui.value})
+            }
+        });
+    });
 
   $source
     .on('error', function () {
@@ -62,7 +90,7 @@ $(function () {
     normal = Math.max(Math.min(normal, 1), 0);
 
     $speedIndicator.css('left', normal * 100 + '%');
-    $speedDisplay.html(Math.round(normal * 1000) / 10);
+    $speedDisplay.html(Math.round(normal * 100));
 
     speed = Math.pow(normal, 2);
 
@@ -130,5 +158,17 @@ $(function () {
 
   $forward.click(function (e) {
     postEvent({ type: 'jump', direction: 1 });
+  });
+
+  /* Increase or Decrease the text font size */
+  $smallerFont.click(function (e) {
+      fontSize -= fontSizeDelta;
+      $fontSize.html(fontSize);
+      postEvent({ type: 'fontSize', amount: -1 * fontSizeDelta});
+  });
+  $largerFont.click(function (e) {
+      fontSize += fontSizeDelta;
+      $fontSize.html(fontSize);
+      postEvent({ type: 'fontSize', amount: fontSizeDelta});
   });
 });
